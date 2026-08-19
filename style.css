@@ -1,0 +1,67 @@
+/* The XP stop screen, as a stylesheet. Every page here shares it so the three of them read
+   as one screen the reader is paging through rather than three documents. */
+
+html {
+  background: #0000AA;
+  /* The blue screen filled the display. On a phone the safe-area bands should be blue too,
+     not white, so the background lives on html rather than on a centred card. */
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: #0000AA;
+  color: #FFFFFF;
+  /* Lucida Console is the face the XP stop screen actually used. The fallbacks are the
+     nearest fixed-pitch faces on machines that never shipped it. */
+  font-family: "Lucida Console", "Lucida Sans Typewriter", Consolas, Menlo, monospace;
+  font-size: 15px;
+  line-height: 1.45;
+  /* No anti-aliasing softening: the original was a text-mode framebuffer. */
+  -webkit-font-smoothing: none;
+  font-smooth: never;
+}
+
+main {
+  max-width: 66ch;
+  margin: 0 auto;
+  padding: 32px 20px 64px;
+}
+
+/* The original wrapped at a fixed 78 columns. A phone cannot honour that, so the copy is
+   authored as flowing paragraphs and the measure above does the wrapping instead — hard
+   newlines in the markup would wrap twice and come out ragged. */
+p {
+  margin: 0 0 1.45em;
+}
+
+/* The screen had one weight, one size and one colour: headings differ from body text only
+   by the caps on the stop code. */
+h1, h2 {
+  font: inherit;
+  margin: 0 0 1.45em;
+}
+
+h1 { text-transform: uppercase; }
+
+a {
+  color: #FFFFFF;
+  text-decoration: underline;
+  word-break: break-word;
+}
+
+a:hover, a:focus { background: #FFFFFF; color: #0000AA; outline: none; }
+
+ul { margin: 0 0 1.45em; padding-left: 2ch; list-style: none; }
+li { margin: 0; }
+li::before { content: "* "; }
+
+/* The line under the title on the privacy page. Dimmer than the body, still legible on the
+   blue — the XP screen's own secondary text was the same white, so this is as far from it
+   as the palette goes. */
+.updated { color: #B8B8E8; }
+
+@media (max-width: 480px) {
+  body { font-size: 13px; }
+  main { padding: 20px 14px 48px; }
+}
